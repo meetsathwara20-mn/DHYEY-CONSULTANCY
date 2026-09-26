@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dhyeyApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DHYEY CONSULTANCY | Tax • GST • Accounting • Compliance</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-controller="MainController">
+
+<div class="app-shell">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="brand" ng-click="goHome()">
+            <div class="brand-mark">D</div>
+            <div>
+                <div class="brand-name">DHYEY</div>
+                <div class="brand-sub">CONSULTANCY</div>
+            </div>
+        </div>
+
+        <div class="sidebar-label">NAVIGATION</div>
+
+        <button class="side-link"
+                ng-class="{active: currentView.nav === 'home'}"
+                ng-click="goHome()">
+            <span class="side-number">01</span>
+            <span>Overview</span>
+        </button>
+
+        <button class="side-link"
+                ng-class="{active: currentView.nav === 'services'}"
+                ng-click="openServices()">
+            <span class="side-number">02</span>
+            <span>Services</span>
+        </button>
+
+        <button class="side-link"
+                ng-class="{active: currentView.nav === 'solutions'}"
+                ng-click="openSolutions()">
+            <span class="side-number">03</span>
+            <span>Who We Help</span>
+        </button>
+
+        <button class="side-link"
+                ng-class="{active: currentView.nav === 'process'}"
+                ng-click="openProcess()">
+            <span class="side-number">04</span>
+            <span>How We Work</span>
+        </button>
+
+        <button class="side-link"
+                ng-class="{active: currentView.nav === 'company'}"
+                ng-click="openCompany()">
+            <span class="side-number">05</span>
+            <span>Company</span>
+        </button>
+
+        <button class="side-link"
+                ng-class="{active: currentView.nav === 'knowledge'}"
+                ng-click="openKnowledge()">
+            <span class="side-number">06</span>
+            <span>Knowledge</span>
+        </button>
+
+        <div class="sidebar-bottom">
+
+            <div class="availability">
+                <span class="status-dot"></span>
+                <div>
+                    <strong>Consultation Desk</strong>
+                    <small>Available for enquiries</small>
+                </div>
+            </div>
+
+            <button class="sidebar-contact" ng-click="openContact()">
+                Contact Consultant
+                <span>↗</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN AREA ================= -->
+    <main class="main-area">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div class="breadcrumbs">
+
+                <button ng-click="goHome()">DHYEY</button>
+
+                <span ng-repeat="crumb in currentView.breadcrumbs">
+                    <b>/</b>
+                    <button ng-if="crumb.clickable"
+                            ng-click="crumb.action()">
+                        {{crumb.label}}
+                    </button>
+
+                    <span ng-if="!crumb.clickable">
+                        {{crumb.label}}
+                    </span>
+                </span>
+
+            </div>
+
+            <div class="top-actions">
+
+                <button class="icon-btn"
+                        title="Back"
+                        ng-click="goBack()"
+                        ng-if="history.length">
+                    ←
+                </button>
+
+                <button class="top-contact"
+                        ng-click="openContact()">
+                    Start an Enquiry
+                    <span>↗</span>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= SCREEN ================= -->
+        <section class="screen" ng-class="transitionClass">
+
+            <!-- ========================================= -->
+            <!-- HOME -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'home'" class="view">
+
+                <div class="hero-grid">
+
+                    <div class="hero-main">
+
+                        <div class="eyebrow">
+                            <span></span>
+                            TAX • GST • ACCOUNTING • COMPLIANCE
+                        </div>
+
+                        <h1>
+                            Financial work,
+                            <em>made clear.</em>
+                        </h1>
+
+                        <p class="hero-description">
+                            DHYEY CONSULTANCY provides structured support
+                            across taxation, GST, accounting, TDS,
+                            financial records and ongoing compliance.
+                        </p>
+
+                        <div class="hero-buttons">
+
+                            <button class="primary-btn"
+                                    ng-click="openServices()">
+                                Explore Services
+                                <span>↗</span>
+                            </button>
+
+                            <button class="secondary-btn"
+                                    ng-click="openProcess()">
+                                See How We Work
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hero-side">
+
+                        <div class="profile-card">
+
+                            <div class="profile-top">
+                                <span>CONSULTANT</span>
+                                <span>01</span>
+                            </div>
+
+                            <div class="profile-avatar">CS</div>
+
+                            <h3>Chirag Sathwara</h3>
+
+                            <p>
+                                Consultant at<br>
+                                <strong>DHYEY CONSULTANCY</strong>
+                            </p>
+
+                            <button ng-click="openConsultant()">
+                                View Consultant Profile
+                                <span>→</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK EXPLORER -->
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow-small">START HERE</span>
+                        <h2>What do you need help with?</h2>
+                    </div>
+
+                    <button class="text-link"
+                            ng-click="openServices()">
+                        View all services →
+                    </button>
+
+                </div>
+
+
+                <div class="quick-grid">
+
+                    <div class="quick-card"
+                         ng-repeat="item in quickServices"
+                         ng-click="openService(item)">
+
+                        <div class="quick-icon">{{item.icon}}</div>
+
+                        <div>
+                            <span>{{item.number}}</span>
+                            <h3>{{item.name}}</h3>
+                            <p>{{item.short}}</p>
+                        </div>
+
+                        <div class="arrow-circle">↗</div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXPLORE MORE -->
+                <div class="home-columns">
+
+                    <div class="large-explorer">
+
+                        <span class="eyebrow-small">EXPLORE THE CONSULTANCY</span>
+
+                        <h2>
+                            Don't just see a service.
+                            <br>
+                            <em>Explore what sits behind it.</em>
+                        </h2>
+
+                        <p>
+                            Open a service, explore its work areas,
+                            understand the process, review document
+                            requirements and reach the consultation desk.
+                        </p>
+
+                        <div class="explorer-links">
+
+                            <button ng-click="openServices()">
+                                <span>Service Explorer</span>
+                                <b>01</b>
+                            </button>
+
+                            <button ng-click="openSolutions()">
+                                <span>Client & Business Types</span>
+                                <b>02</b>
+                            </button>
+
+                            <button ng-click="openKnowledge()">
+                                <span>Knowledge Centre</span>
+                                <b>03</b>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-panel">
+
+                        <span class="eyebrow-small">DIRECT DESK</span>
+
+                        <h3>Have a requirement?</h3>
+
+                        <p>
+                            Tell us what you need and connect
+                            directly with the consultancy.
+                        </p>
+
+                        <button ng-click="openContact()">
+                            Open Client Desk →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- SERVICES OVERVIEW -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'services'" class="view">
+
+                <div class="page-intro">
+
+                    <div>
+                        <span class="eyebrow">02 / SERVICE EXPLORER</span>
+
+                        <h1>
+                            Explore our
+                            <em>services.</em>
+                        </h1>
+                    </div>
+
+                    <p>
+                        Choose a service category to open its dedicated
+                        information screen. From there, explore individual
+                        work areas, documents, process and FAQs.
+                    </p>
+
+                </div>
+
+
+                <div class="service-directory">
+
+                    <button class="service-directory-card"
+                            ng-repeat="service in services"
+                            ng-click="openService(service)">
+
+                        <div class="service-card-number">
+                            {{service.number}}
+                        </div>
+
+                        <div class="service-card-icon">
+                            {{service.icon}}
+                        </div>
+
+                        <div class="service-card-content">
+
+                            <span>{{service.category}}</span>
+
+                            <h2>{{service.name}}</h2>
+
+                            <p>{{service.description}}</p>
+
+                            <div class="mini-tags">
+                                <span ng-repeat="tag in service.tags">
+                                    {{tag}}
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="service-open">
+                            Explore →
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- SERVICE DETAIL -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'serviceDetail'" class="view">
+
+                <div class="detail-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            {{currentView.service.category}}
+                        </span>
+
+                        <h1>
+                            {{currentView.service.name}}
+                            <em>.</em>
+                        </h1>
+
+                        <p>
+                            {{currentView.service.longDescription}}
+                        </p>
+
+                    </div>
+
+                    <div class="detail-number">
+                        {{currentView.service.number}}
+                    </div>
+
+                </div>
+
+
+                <div class="detail-layout">
+
+                    <div class="topic-grid">
+
+                        <button class="topic-card"
+                                ng-repeat="topic in currentView.service.topics"
+                                ng-click="openTopic(currentView.service, topic)">
+
+                            <div class="topic-top">
+                                <span>{{topic.number}}</span>
+                                <b>↗</b>
+                            </div>
+
+                            <h3>{{topic.title}}</h3>
+
+                            <p>{{topic.description}}</p>
+
+                            <div class="topic-footer">
+                                Explore information
+                            </div>
+
+                        </button>
+
+                    </div>
+
+
+                    <aside class="detail-sidebar">
+
+                        <div class="side-info">
+
+                            <span>THIS SERVICE</span>
+
+                            <strong>{{currentView.service.name}}</strong>
+
+                            <p>
+                                Explore the available information
+                                before contacting the consultancy.
+                            </p>
+
+                            <button ng-click="openContact()">
+                                Ask about this service →
+                            </button>
+
+                        </div>
+
+
+                        <div class="related-box">
+
+                            <span>RELATED</span>
+
+                            <button ng-repeat="related in currentView.service.related"
+                                    ng-click="openServiceById(related)">
+                                {{getServiceName(related)}}
+                                <b>↗</b>
+                            </button>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- TOPIC DETAIL -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'topicDetail'" class="view">
+
+                <div class="topic-detail-head">
+
+                    <span class="eyebrow">
+                        {{currentView.service.name}}
+                        / {{currentView.topic.title}}
+                    </span>
+
+                    <h1>
+                        {{currentView.topic.title}}
+                        <em>.</em>
+                    </h1>
+
+                    <p>
+                        {{currentView.topic.fullDescription}}
+                    </p>
+
+                </div>
+
+
+                <div class="information-grid">
+
+                    <div class="information-main">
+
+                        <div class="info-section"
+                             ng-repeat="section in currentView.topic.sections">
+
+                            <div class="info-section-title">
+                                <span>{{section.number}}</span>
+                                <h3>{{section.title}}</h3>
+                            </div>
+
+                            <p ng-repeat="paragraph in section.paragraphs">
+                                {{paragraph}}
+                            </p>
+
+                            <ul ng-if="section.items">
+                                <li ng-repeat="item in section.items">
+                                    <span>✓</span>
+                                    {{item}}
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <aside class="topic-action">
+
+                        <div class="action-card">
+
+                            <span class="eyebrow-small">
+                                NEED THIS?
+                            </span>
+
+                            <h2>
+                                Discuss your requirement.
+                            </h2>
+
+                            <p>
+                                Share your situation with DHYEY
+                                CONSULTANCY and ask what documents
+                                or information may be required.
+                            </p>
+
+                            <button class="primary-btn"
+                                    ng-click="openContact()">
+                                Start an Enquiry
+                                <span>↗</span>
+                            </button>
+
+                            <a href="https://wa.me/919924246408"
+                               target="_blank"
+                               class="whatsapp-link">
+                                WhatsApp directly →
+                            </a>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- SOLUTIONS -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'solutions'" class="view">
+
+                <div class="page-intro">
+
+                    <div>
+
+                        <span class="eyebrow">03 / WHO WE HELP</span>
+
+                        <h1>
+                            Different needs.
+                            <br>
+                            <em>Different routes.</em>
+                        </h1>
+
+                    </div>
+
+                    <p>
+                        Select the type of individual, professional or
+                        business you want to explore. Each route opens
+                        a different information screen.
+                    </p>
+
+                </div>
+
+
+                <div class="solution-grid">
+
+                    <button class="solution-card"
+                            ng-repeat="solution in solutions"
+                            ng-click="openSolution(solution)">
+
+                        <span class="solution-number">
+                            {{solution.number}}
+                        </span>
+
+                        <div class="solution-icon">
+                            {{solution.icon}}
+                        </div>
+
+                        <h2>{{solution.name}}</h2>
+
+                        <p>{{solution.description}}</p>
+
+                        <div class="solution-bottom">
+                            Explore needs <span>→</span>
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- SOLUTION DETAIL -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'solutionDetail'" class="view">
+
+                <div class="detail-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            WHO WE HELP
+                        </span>
+
+                        <h1>
+                            {{currentView.solution.name}}
+                            <em>.</em>
+                        </h1>
+
+                        <p>
+                            {{currentView.solution.longDescription}}
+                        </p>
+
+                    </div>
+
+                    <div class="detail-number">
+                        {{currentView.solution.number}}
+                    </div>
+
+                </div>
+
+
+                <div class="needs-layout">
+
+                    <div>
+
+                        <span class="eyebrow-small">
+                            TYPICAL REQUIREMENTS
+                        </span>
+
+                        <div class="needs-list">
+
+                            <button ng-repeat="need in currentView.solution.needs"
+                                    ng-click="openNeed(currentView.solution, need)">
+
+                                <span class="need-number">
+                                    0{{$index + 1}}
+                                </span>
+
+                                <div>
+                                    <h3>{{need.title}}</h3>
+                                    <p>{{need.description}}</p>
+                                </div>
+
+                                <b>↗</b>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <aside class="profile-note">
+
+                        <span class="eyebrow-small">
+                            SERVICE ROUTE
+                        </span>
+
+                        <h3>
+                            Start with your requirement,
+                            not a complicated form.
+                        </h3>
+
+                        <p>
+                            Explore the relevant area first,
+                            then contact the consultancy when
+                            you are ready.
+                        </p>
+
+                        <button ng-click="openContact()">
+                            Contact Desk →
+                        </button>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- NEED DETAIL -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'needDetail'" class="view">
+
+                <div class="topic-detail-head">
+
+                    <span class="eyebrow">
+                        {{currentView.solution.name}}
+                    </span>
+
+                    <h1>
+                        {{currentView.need.title}}
+                        <em>.</em>
+                    </h1>
+
+                    <p>
+                        {{currentView.need.fullDescription}}
+                    </p>
+
+                </div>
+
+
+                <div class="needs-information">
+
+                    <div class="needs-info-card">
+
+                        <span>WHAT MAY BE INVOLVED</span>
+
+                        <ul>
+                            <li ng-repeat="item in currentView.need.items">
+                                <span>✓</span>
+                                {{item}}
+                            </li>
+                        </ul>
+
+                    </div>
+
+
+                    <div class="needs-info-card">
+
+                        <span>WHAT TO DO NEXT</span>
+
+                        <p>
+                            Requirements vary according to the
+                            individual's or organisation's situation.
+                            Contact DHYEY CONSULTANCY to discuss
+                            the specific requirement.
+                        </p>
+
+                        <button class="primary-btn"
+                                ng-click="openContact()">
+                            Discuss Requirement →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- PROCESS -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'process'" class="view">
+
+                <div class="page-intro">
+
+                    <div>
+
+                        <span class="eyebrow">04 / HOW WE WORK</span>
+
+                        <h1>
+                            A clear route from
+                            <em>question to completion.</em>
+                        </h1>
+
+                    </div>
+
+                    <p>
+                        Explore each stage of the client journey.
+                        Every step opens its own information screen.
+                    </p>
+
+                </div>
+
+
+                <div class="process-timeline">
+
+                    <button class="process-step"
+                            ng-repeat="step in processSteps"
+                            ng-click="openProcessStep(step)">
+
+                        <div class="process-number">
+                            0{{$index + 1}}
+                        </div>
+
+                        <div class="process-line"></div>
+
+                        <div class="process-content">
+
+                            <span>{{step.label}}</span>
+
+                            <h2>{{step.title}}</h2>
+
+                            <p>{{step.description}}</p>
+
+                        </div>
+
+                        <b>↗</b>
+
+                    </button>
+
+                </div>
+
+
+                <div class="process-bottom">
+
+                    <div>
+                        <span class="eyebrow-small">
+                            HAVE A QUESTION?
+                        </span>
+
+                        <h2>
+                            Start with a conversation.
+                        </h2>
+                    </div>
+
+                    <button class="primary-btn"
+                            ng-click="openContact()">
+                        Open Client Desk →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- PROCESS DETAIL -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'processDetail'" class="view">
+
+                <div class="detail-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            {{currentView.step.label}}
+                        </span>
+
+                        <h1>
+                            {{currentView.step.title}}
+                            <em>.</em>
+                        </h1>
+
+                        <p>
+                            {{currentView.step.fullDescription}}
+                        </p>
+
+                    </div>
+
+                    <div class="detail-number">
+                        {{currentView.step.number}}
+                    </div>
+
+                </div>
+
+
+                <div class="process-detail-grid">
+
+                    <div class="info-section"
+                         ng-repeat="block in currentView.step.blocks">
+
+                        <div class="info-section-title">
+                            <span>0{{$index + 1}}</span>
+                            <h3>{{block.title}}</h3>
+                        </div>
+
+                        <p>{{block.description}}</p>
+
+                        <ul>
+                            <li ng-repeat="item in block.items">
+                                <span>✓</span>
+                                {{item}}
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <div class="center-cta">
+
+                    <h2>Ready to discuss your requirement?</h2>
+
+                    <button class="primary-btn"
+                            ng-click="openContact()">
+                        Contact DHYEY CONSULTANCY →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- COMPANY -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'company'" class="view">
+
+                <div class="page-intro">
+
+                    <div>
+
+                        <span class="eyebrow">05 / COMPANY</span>
+
+                        <h1>
+                            Know the
+                            <em>consultancy.</em>
+                        </h1>
+
+                    </div>
+
+                    <p>
+                        Explore the consultant, areas of work,
+                        working philosophy and contact information.
+                    </p>
+
+                </div>
+
+
+                <div class="company-grid">
+
+                    <button ng-click="openCompanyAbout()">
+
+                        <span>01</span>
+
+                        <div class="company-icon">D</div>
+
+                        <h2>About DHYEY</h2>
+
+                        <p>
+                            Understand the consultancy and
+                            the areas it is built around.
+                        </p>
+
+                        <b>Explore →</b>
+
+                    </button>
+
+
+                    <button ng-click="openConsultant()">
+
+                        <span>02</span>
+
+                        <div class="company-icon">CS</div>
+
+                        <h2>Consultant</h2>
+
+                        <p>
+                            Meet Chirag Sathwara and
+                            explore the consultant profile.
+                        </p>
+
+                        <b>Explore →</b>
+
+                    </button>
+
+
+                    <button ng-click="openWorkAreas()">
+
+                        <span>03</span>
+
+                        <div class="company-icon">+</div>
+
+                        <h2>Areas We Handle</h2>
+
+                        <p>
+                            Explore the types of financial,
+                            tax and compliance work covered.
+                        </p>
+
+                        <b>Explore →</b>
+
+                    </button>
+
+
+                    <button ng-click="openContact()">
+
+                        <span>04</span>
+
+                        <div class="company-icon">↗</div>
+
+                        <h2>Contact Desk</h2>
+
+                        <p>
+                            Call, email, WhatsApp or send
+                            a direct enquiry.
+                        </p>
+
+                        <b>Open →</b>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- COMPANY ABOUT -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'companyAbout'" class="view">
+
+                <div class="topic-detail-head">
+
+                    <span class="eyebrow">DHYEY CONSULTANCY</span>
+
+                    <h1>
+                        Built around
+                        <em>clarity.</em>
+                    </h1>
+
+                    <p>
+                        DHYEY CONSULTANCY is positioned as a
+                        professional consultancy desk for taxation,
+                        GST, accounting, TDS, financial records and
+                        compliance-related requirements.
+                    </p>
+
+                </div>
+
+
+                <div class="about-panels">
+
+                    <div class="about-panel"
+                         ng-repeat="item in companyInfo">
+
+                        <span>{{item.number}}</span>
+
+                        <h2>{{item.title}}</h2>
+
+                        <p>{{item.description}}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- CONSULTANT -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'consultant'" class="view">
+
+                <div class="consultant-layout">
+
+                    <div class="consultant-visual">
+
+                        <div class="big-initials">CS</div>
+
+                        <span>CONSULTANT PROFILE</span>
+
+                    </div>
+
+
+                    <div class="consultant-content">
+
+                        <span class="eyebrow">
+                            DHYEY CONSULTANCY
+                        </span>
+
+                        <h1>
+                            Chirag
+                            <em>Sathwara.</em>
+                        </h1>
+
+                        <p class="large-copy">
+                            Consultant at DHYEY CONSULTANCY,
+                            supporting individuals and businesses
+                            with structured financial, tax,
+                            accounting and compliance requirements.
+                        </p>
+
+
+                        <div class="consultant-details">
+
+                            <div>
+                                <span>PHONE</span>
+                                <strong>9924246408</strong>
+                            </div>
+
+                            <div>
+                                <span>EMAIL</span>
+                                <strong>chiraggp11@gmail.com</strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="hero-buttons">
+
+                            <a class="primary-btn"
+                               href="tel:+919924246408">
+                                Call Consultant →
+                            </a>
+
+                            <a class="secondary-btn"
+                               href="https://wa.me/919924246408"
+                               target="_blank">
+                                WhatsApp
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- WORK AREAS -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'workAreas'" class="view">
+
+                <div class="page-intro">
+
+                    <div>
+
+                        <span class="eyebrow">COMPANY / WORK AREAS</span>
+
+                        <h1>
+                            What we
+                            <em>handle.</em>
+                        </h1>
+
+                    </div>
+
+                    <p>
+                        A broad view of the work areas covered
+                        by the consultancy.
+                    </p>
+
+                </div>
+
+
+                <div class="work-area-grid">
+
+                    <button ng-repeat="area in workAreas"
+                            ng-click="openWorkArea(area)">
+
+                        <span>{{area.number}}</span>
+
+                        <h2>{{area.title}}</h2>
+
+                        <p>{{area.description}}</p>
+
+                        <b>View details →</b>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- WORK AREA DETAIL -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'workAreaDetail'" class="view">
+
+                <div class="topic-detail-head">
+
+                    <span class="eyebrow">
+                        AREAS WE HANDLE
+                    </span>
+
+                    <h1>
+                        {{currentView.area.title}}
+                        <em>.</em>
+                    </h1>
+
+                    <p>
+                        {{currentView.area.longDescription}}
+                    </p>
+
+                </div>
+
+
+                <div class="handling-list">
+
+                    <div ng-repeat="item in currentView.area.items">
+
+                        <span>✓</span>
+
+                        <div>
+                            <h3>{{item.title}}</h3>
+                            <p>{{item.description}}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="center-cta">
+
+                    <h2>
+                        Want to discuss one of these areas?
+                    </h2>
+
+                    <button class="primary-btn"
+                            ng-click="openContact()">
+                        Contact Consultant →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- KNOWLEDGE -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'knowledge'" class="view">
+
+                <div class="page-intro">
+
+                    <div>
+
+                        <span class="eyebrow">06 / KNOWLEDGE CENTRE</span>
+
+                        <h1>
+                            Information before
+                            <em>action.</em>
+                        </h1>
+
+                    </div>
+
+                    <p>
+                        Explore general guidance, frequently asked
+                        questions and document-related information.
+                    </p>
+
+                </div>
+
+
+                <div class="knowledge-grid">
+
+                    <button ng-repeat="article in knowledge"
+                            ng-click="openKnowledgeArticle(article)">
+
+                        <div class="knowledge-number">
+                            {{article.number}}
+                        </div>
+
+                        <span>{{article.category}}</span>
+
+                        <h2>{{article.title}}</h2>
+
+                        <p>{{article.description}}</p>
+
+                        <b>Read →</b>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- KNOWLEDGE ARTICLE -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'knowledgeArticle'" class="view">
+
+                <div class="topic-detail-head">
+
+                    <span class="eyebrow">
+                        {{currentView.article.category}}
+                    </span>
+
+                    <h1>
+                        {{currentView.article.title}}
+                        <em>.</em>
+                    </h1>
+
+                    <p>
+                        {{currentView.article.introduction}}
+                    </p>
+
+                </div>
+
+
+                <div class="article-content">
+
+                    <div class="article-block"
+                         ng-repeat="block in currentView.article.blocks">
+
+                        <span>{{block.number}}</span>
+
+                        <div>
+                            <h2>{{block.title}}</h2>
+
+                            <p ng-repeat="text in block.text">
+                                {{text}}
+                            </p>
+
+                            <ul ng-if="block.items">
+                                <li ng-repeat="item in block.items">
+                                    {{item}}
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="center-cta">
+
+                    <h2>
+                        Need advice for your specific situation?
+                    </h2>
+
+                    <button class="primary-btn"
+                            ng-click="openContact()">
+                        Ask the Consultant →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- CONTACT -->
+            <!-- ========================================= -->
+            <div ng-if="currentView.type === 'contact'" class="view">
+
+                <div class="contact-page">
+
+                    <div class="contact-intro">
+
+                        <span class="eyebrow">
+                            CLIENT DESK
+                        </span>
+
+                        <h1>
+                            Let's discuss
+                            <em>your requirement.</em>
+                        </h1>
+
+                        <p>
+                            Choose your preferred way to connect
+                            with DHYEY CONSULTANCY.
+                        </p>
+
+
+                        <div class="direct-contacts">
+
+                            <a href="tel:+919924246408">
+                                <span>PHONE</span>
+                                <strong>9924246408</strong>
+                            </a>
+
+                            <a href="mailto:chiraggp11@gmail.com">
+                                <span>EMAIL</span>
+                                <strong>chiraggp11@gmail.com</strong>
+                            </a>
+
+                            <a href="https://wa.me/919924246408"
+                               target="_blank">
+                                <span>WHATSAPP</span>
+                                <strong>Chat directly →</strong>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="enquiry-box">
+
+                        <span class="eyebrow-small">
+                            SEND AN ENQUIRY
+                        </span>
+
+                        <h2>
+                            Tell us what you need.
+                        </h2>
+
+                        <form ng-submit="submitEnquiry()">
+
+                            <label>
+                                Your Name
+                                <input type="text"
+                                       ng-model="form.name"
+                                       placeholder="Enter your name"
+                                       required>
+                            </label>
+
+                            <label>
+                                Phone Number
+                                <input type="tel"
+                                       ng-model="form.phone"
+                                       placeholder="Enter phone number"
+                                       required>
+                            </label>
+
+                            <label>
+                                Requirement
+                                <select ng-model="form.requirement"
+                                        required>
+
+                                    <option value="">
+                                        Select a requirement
+                                    </option>
+
+                                    <option ng-repeat="service in services"
+                                            value="{{service.name}}">
+                                        {{service.name}}
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+                            </label>
+
+                            <label>
+                                Message
+                                <textarea ng-model="form.message"
+                                          placeholder="Briefly explain your requirement..."
+                                          rows="5"></textarea>
+                            </label>
+
+                            <button class="primary-btn"
+                                    type="submit">
+                                Continue on WhatsApp
+                                <span>↗</span>
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div>
+                © {{currentYear}} DHYEY CONSULTANCY
+            </div>
+
+            <div>
+                Chirag Sathwara
+            </div>
+
+            <div>
+                Tax • GST • Accounting • Compliance
+            </div>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
